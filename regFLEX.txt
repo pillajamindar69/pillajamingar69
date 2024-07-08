@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width ,initial-size=1.0">
+	<title>registration</title>
+	<link href="./registration.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<form id="form" onsubmit="return validate()"  action="catalog.html" >
+			<h1>REGISTRATION</h1>
+			<div class="input-control">
+				<label for="username">Username:</label>
+				<br><input id="username" name="username" type="text" ></br>
+				<div class="error"></div>
+			</div>
+			<div class="input-control">
+				<label for="email">Email:</label>
+				<br><input id="email" name="email" type="text"></br>
+				<div class="error"> </div>
+			</div>
+			<div class="input-control">
+				<label for="password">Password:</label>
+				<br><input id="password" name="password" type="password" </br>
+				<div class="error"></div>
+			</div>
+			<div class="input-control">
+				<label for="password">Password again:</label>
+				<br><input id="password2" name="password2" type="password" ></br>
+				<div class="error"></div>
+			</div>
+			<div class="new">
+				<div>
+					<a href="./html">Forgot password?</a>
+				</div>
+				<div>
+					<a href="./login">Login?</a>
+				</div>
+			</div>
+			<button type="submit">Submit:</button>
+
+		</form>
+	</div>
+	<script src="./registration.js"></script>
+</body>
+</html>

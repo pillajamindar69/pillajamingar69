@@ -1,0 +1,47 @@
+body{
+	background: linear-gradient(to right, black,darkgreen,lightblue);
+	font-family: Times New Roman;
+}
+.container{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+}
+#form{
+	
+	width=400px;
+	margin: 20vh auto 0 auto;
+	padding: 40px;
+	background-color:whitesmoke;
+	border-radius:10px;
+	font-size:12px;
+}
+#form h1:hover{
+	color:black;
+	text-align: center;
+}
+#form button{
+	width:100%;
+	color:white;
+	padding:10px;
+	margin-top:10px;
+	background-color: rgb(41,57,194);
+	border-radius:4px;
+}
+
+.new{
+	display:flex;
+	flex-direction: row;
+	justify-content: space-evenly;
+}
+
+.input-control input:focus{
+	outline:0;
+}
+.input-control:success input{
+	border-color: #09c372;
+}
+.input-control:error input{
+	border-color: red;
+}
