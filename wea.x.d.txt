@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+   <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+
+    }
+    
+    input, button {
+        margin: 10px;
+        padding: 10px;
+        font-size: 16px;
+        
+    }
+    input{
+        
+        width: 200px;
+        border: 2px solid black;
+    }
+    button{
+        background-color:blue;
+        border: 2px solid black;
+        color:white;
+        font-size: medium;
+        font-weight: bold;
+    }
+    canvas {
+        margin-top: 20px;
+        
+    }
+    
+   </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Weather Information</h1>
+        <div class="in"><input type="text" id="cityInput" placeholder="Enter city name">
+            <button id="getWeatherBtn">Get Weather</button></div>
+        
+        <canvas id="weatherChart" width="300" height="200"></canvas>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script>
+        const apiKey = 'd724ab591d346cb315cdbdc75e6c07fa';
+const apiUrl = 'https://api.openweathermap.org/data/2.5/forecast';
+
+document.getElementById('getWeatherBtn').addEventListener('click', async () => {
+    const city = document.getElementById('cityInput').value;
+    if (city) {
+        const weatherData = await fetchWeatherData(city);
+        if (weatherData) {
+            displayWeatherChart(weatherData);
+        }
+    }
+});
+
+const fetchWeatherData = async (city) => {
+    try {
+        const response = await fetch(`${apiUrl}?q=${city}&units=metric&appid=${apiKey}`);
+        const data = await response.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching weather data:', error);
+    }
+};
+
+const displayWeatherChart = (weatherData) => {
+
+    const ctx = document.getElementById('weatherChart').getContext('2d');
+    
+    const labels = weatherData.list.map(item => new Date(item.dt_txt).toLocaleString());
+
+    const temperatures = weatherData.list.map(item => item.main.temp);
+
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Temperature (°C)',
+                data: temperatures,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+       
+    });
+};
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+xml 
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE bookstore [
+<!ELEMENT bookstore (book+)>
+<!ELEMENT book (title, author, genre, price, publish_date)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT author (#PCDATA)>
+<!ELEMENT genre (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT publish_date (#PCDATA)>
+]>
+
+<bookstore>
+    <book>
+        <title>Effective Java</title>
+        <author>Joshua Bloch</author>
+        <genre>Programming</genre>
+        <price>45.00</price>
+        <publish_date>2018-01-11</publish_date>
+    </book>
+    <book>
+        <title>Clean Code</title>
+        <author>Robert C. Martin</author>
+        <genre>Programming</genre>
+        <price>50.00</price>
+        <publish_date>2008-08-01</publish_date>
+    </book>
+    <book>
+        <title>Thinking in Java</title>
+        <author>Bruce Eckel</author>
+        <genre>Programming</genre>
+        <price>40.00</price>
+        <publish_date>2006-02-20</publish_date>
+    </book>
+</bookstore>
+
+/xml
+
+
+xsd 
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="bookstore">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="book" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="title" type="xs:string"/>
+                            <xs:element name="author" type="xs:string"/>
+                            <xs:element name="genre" type="xs:string"/>
+                            <xs:element name="price" type="xs:decimal"/>
+                            <xs:element name="publish_date" type="xs:date"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
